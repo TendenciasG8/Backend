@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const NodeRSA = require('node-rsa');
 
 const BusinessSchema = mongoose.Schema({
     ruc: {
-        type: String,
+        type: Number,
         required: true
     },
     password: {

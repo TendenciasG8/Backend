@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const NodeRSA = require('node-rsa');
 
 const UserSchema = mongoose.Schema({
     dni: {
@@ -8,7 +7,7 @@ const UserSchema = mongoose.Schema({
         required: true
     },
     ruc: {
-        type: String,
+        type: Number,
         required: true
     },
     password: {
