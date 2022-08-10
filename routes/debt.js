@@ -7,5 +7,5 @@ const debtController = require('../controllers/debtController');
 router.post('/', debtController.createDebt);
 router.get('/', debtController.getDebts);
 router.get('/ruc/:ruc', debtController.getDebtsByRuc);
-router.delete('ruc/:ruc', debtController.deleteDebts);
+router.delete('/ruc/:ruc', debtController.deleteDebts);
 module.exports = router;

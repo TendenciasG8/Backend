@@ -13,11 +13,11 @@ exports.createDebt = async (req, res) => {
         rucc = await User.findOne({ ruc: req.body.ruc });
         rucbc = await Business.findOne({ ruc: req.body.ruc });
 
-        if(!rucc || !rucbc ) {
-            res.status(401).json({ msg: 'RUC isnt registered' })
-        }else{
+        if(!rucc || !rucbc) {
             await debt.save();
             res.send(debt);
+        }else{
+            res.status(401).json({ msg: 'RUC isnt registered' })
         }
         
     } catch (error) {
@@ -47,12 +47,10 @@ exports.deleteDebts = async (req, res) => {
 
     try {
         let debts = await Debt.find({ruc: req.params.ruc});
-
         if(!debts) {
             res.status(404).json({ msg: 'Debts does not exist' })
         }
-       
-        await Debt.deleteMany({ruc: req.params.ruc})
+        await Debt.deleteMany({ruc: req.params.ruc});
         res.json({ msg: 'Debts successfully removed' });
         
     } catch (error) {
