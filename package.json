@@ -1,12 +1,27 @@
 {
   "name": "backend",
+  "description": "back de tendencias",
   "version": "1.0.0",
-  "description": "Back de tendencias",
   "main": "index.js",
+  "devDependencies": {},
   "scripts": {
+    "test": "nodemon index.js",
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TendenciasG8/Backend.git"
+  },
+  "keywords": [
+    "paycheck"
+  ],
+  "author": "Gustavo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TendenciasG8/Backend/issues"
+  },
+  "homepage": "https://github.com/TendenciasG8/Backend#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
