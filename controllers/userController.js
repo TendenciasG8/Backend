@@ -41,6 +41,23 @@ exports.getUserByDni = async (req, res) => {
     }
 }
 
+exports.getUserByRuc = async (req, res) => {
+
+    try {
+        let user = await User.findOne({ruc: req.params.ruc});
+
+        if(!user) {
+            res.status(404).json({ msg: 'User does not exist' })
+        }
+       
+        res.json(user);
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Error');
+    }
+}
+
 //user get con find 
 exports.getUsers = async (req, res) => {
 

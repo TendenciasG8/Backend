@@ -40,3 +40,17 @@ exports.getBusinessByRuc = async (req, res) => {
         res.status(500).send('Error');
     }
 }
+
+//business get con find 
+exports.getBusinesss = async (req, res) => {
+
+    try {
+
+        const businesss = await Business.find();
+        res.json(businesss)
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Error');
+    }
+}

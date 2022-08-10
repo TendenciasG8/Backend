@@ -60,3 +60,17 @@ exports.deleteDebts = async (req, res) => {
         res.status(500).send('Error');
     }
 }
+
+//debts get con find 
+exports.getDebts = async (req, res) => {
+
+    try {
+
+        const debts = await Debt.find();
+        res.json(debts)
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Error');
+    }
+}
