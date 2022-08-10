@@ -34,4 +34,4 @@ BusinessSchema.statics.comparePassword = async (password, receivedPassword) => {
     return await bcrypt.compare(password, receivedPassword);
   };
 
-module.exports = mongoose.model('Business', UserSchema);
+module.exports = mongoose.model('Business', BusinessSchema);
