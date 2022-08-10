@@ -40,3 +40,17 @@ exports.getUserByDni = async (req, res) => {
         res.status(500).send('Error');
     }
 }
+
+//user get con find 
+exports.getUsers = async (req, res) => {
+
+    try {
+
+        const users = await User.find();
+        res.json(users)
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Error');
+    }
+}
