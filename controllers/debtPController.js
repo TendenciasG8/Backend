@@ -60,7 +60,7 @@ exports.deleteDebtPs = async (req, res) => {
 }
 
 //debts get con find 
-exports.getDebts = async (req, res) => {
+exports.getDebtPs = async (req, res) => {
 
     try {
 
