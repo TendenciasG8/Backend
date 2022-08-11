@@ -36,3 +36,5 @@ const ReniecBDSchema = mongoose.Schema({
 });
 
 module.exports = mongoose.model('ReniecBD', ReniecBDSchema);
+
+//BD de la reniec

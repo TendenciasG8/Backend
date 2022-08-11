@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const DebtSchema = mongoose.Schema({
+const DebtBSchema = mongoose.Schema({
     ruc: {
         type: Number,
         required: true
@@ -27,6 +27,6 @@ const DebtSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Debt', DebtSchema);
+module.exports = mongoose.model('DebtB', DebtBSchema);
 
-//Deudas dentro del sistema de la sunat
+//Deudas en las BD  de los bancos del estado

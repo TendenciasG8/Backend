@@ -1,21 +1,21 @@
-const Debt = require("../models/Debt");
+const DebtP = require("../models/DebtP");
 const User = require("../models/User");
 const Business = require("../models/Business");
 
-exports.createDebt = async (req, res) => {
+exports.createDebtP = async (req, res) => {
 
     try {
-        let debt;
+        let debtP;
         let rucc;
         let rucbc;
-        // Debt creation
-        debt = new Debt(req.body);
+        // DebtP creation
+        debtP = new DebtP(req.body);
         rucc = await User.findOne({ ruc: req.body.ruc });
         rucbc = await Business.findOne({ ruc: req.body.ruc });
 
         if(!rucc || !rucbc) {
-            await debt.save();
-            res.send(debt);
+            await debtP.save();
+            res.send(debtP);
         }else{
             res.status(401).json({ msg: 'RUC isnt registered' })
         }
@@ -26,16 +26,16 @@ exports.createDebt = async (req, res) => {
     }
 }
 
-exports.getDebtsByRuc = async (req, res) => {
+exports.getDebtPsByRuc = async (req, res) => {
 
     try {
-        let debt = await Debt.find({ruc: req.params.ruc}).sort({date_of_debt: -1 });
+        let debtP = await DebtP.find({ruc: req.params.ruc}).sort({date_of_debt: -1 });
 
-        if(!debt) {
-            res.status(404).json({ msg: 'Debts does not exist' })
+        if(!debtP) {
+            res.status(404).json({ msg: 'DebtPs does not exist' })
         }
        
-        res.json(debt);
+        res.json(debtP);
         
     } catch (error) {
         console.log(error);
@@ -43,15 +43,15 @@ exports.getDebtsByRuc = async (req, res) => {
     }
 }
 
-exports.deleteDebts = async (req, res) => {
+exports.deleteDebtPs = async (req, res) => {
 
     try {
-        let debts = await Debt.find({ruc: req.params.ruc});
-        if(!debts) {
-            res.status(404).json({ msg: 'Debts does not exist' })
+        let debtPs = await DebtP.find({ruc: req.params.ruc});
+        if(!debtPs) {
+            res.status(404).json({ msg: 'DebtPs does not exist' })
         }
-        await Debt.deleteMany({ruc: req.params.ruc});
-        res.json({ msg: 'Debts successfully removed' });
+        await DebtP.deleteMany({ruc: req.params.ruc});
+        res.json({ msg: 'DebtPs successfully removed' });
         
     } catch (error) {
         console.log(error);
