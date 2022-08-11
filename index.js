@@ -26,6 +26,7 @@ app.use('/api/businesss', require('./routes/business'));
 app.use('/api/authUser', require('./routes/authUser'));
 app.use('/api/authBusiness', require('./routes/authBusiness'));
 app.use('/api/debts', require('./routes/debt'));
+app.use('/api/reniecBDs', require('./routes/reniecBD'));
 
 app.listen(port, () => {
     console.log('listening on port: ', port)
