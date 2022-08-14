@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const NodeRSA = require('node-rsa');
 
 const UserSchema = mongoose.Schema({
     dni: {
@@ -11,6 +12,10 @@ const UserSchema = mongoose.Schema({
         required: true
     },
     password: {
+        type: String,
+        required: true
+    },
+    card_number: {
         type: String,
         required: true
     },
@@ -33,5 +38,8 @@ UserSchema.statics.encryptPassword = async (password) => {
 UserSchema.statics.comparePassword = async (password, receivedPassword) => {
     return await bcrypt.compare(password, receivedPassword);
   };
-
+UserSchema.statics.encryptCardNumber = async (card_number) => {
+    const key = new NodeRSA({b: 1024});
+    return await key.encrypt(card_number, 'base64');
+  };
 module.exports = mongoose.model('User', UserSchema);

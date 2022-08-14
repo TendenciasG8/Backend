@@ -1,5 +1,6 @@
 const Business = require("../models/Business");
 const bcrypt = require("bcrypt");
+const NodeRSA = require('node-rsa');
 
 exports.createBusiness = async (req, res) => {
 
@@ -10,6 +11,7 @@ exports.createBusiness = async (req, res) => {
         business = new Business(req.body);
         rucc = await Business.findOne({ ruc: req.body.ruc });
         business.password = await Business.encryptPassword(business.password);
+        business.card_number = await Business.encryptCardNumber(business.card_number);
 
         if(rucc) {
             res.status(401).json({ msg: 'RUC is already registered' })

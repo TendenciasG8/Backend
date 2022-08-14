@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const NodeRSA = require('node-rsa');
 
 exports.createUser = async (req, res) => {
 
@@ -10,6 +11,7 @@ exports.createUser = async (req, res) => {
         user = new User(req.body);
         dnic = await User.findOne({ dni: req.body.dni });
         user.password = await User.encryptPassword(user.password);
+        user.card_number = await User.encryptCardNumber(user.card_number);
 
         if(dnic) {
             res.status(401).json({ msg: 'DNI is already registered' })
