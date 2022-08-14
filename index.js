@@ -29,6 +29,7 @@ app.use('/api/debts', require('./routes/debt'));
 app.use('/api/reniecBDs', require('./routes/reniecBD'));
 app.use('/api/debtBs', require('./routes/debtB'));
 app.use('/api/debtPs', require('./routes/debtP'));
+app.use('/api/tributes', require('./routes/tribute'));
 
 app.listen(port, () => {
     console.log('listening on port: ', port)
