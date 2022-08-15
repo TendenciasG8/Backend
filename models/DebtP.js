@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+var AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const DebtPSchema = mongoose.Schema({
     ruc: {
@@ -17,6 +18,13 @@ const DebtPSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    n_order: {
+        type: Number
+    },
+    status: {
+        type: Boolean,
+        required: true
+    },
     created_date: {
         type: Date,
         default: Date.now()
@@ -27,6 +35,7 @@ const DebtPSchema = mongoose.Schema({
     }
 });
 
+DebtPSchema.plugin(AutoIncrement, {inc_field: 'n_orderP'});
 module.exports = mongoose.model('DebtP', DebtPSchema);
 
 //Deudas en las instituciones públicas

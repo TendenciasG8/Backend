@@ -29,7 +29,7 @@ exports.createDebtP = async (req, res) => {
 exports.getDebtPsByRuc = async (req, res) => {
 
     try {
-        let debtP = await DebtP.find({ruc: req.params.ruc}).sort({date_of_debt: -1 });
+        let debtP = await DebtP.find({ruc: req.params.ruc, status: true}).sort({date_of_debt: -1 });
 
         if(!debtP) {
             res.status(404).json({ msg: 'DebtPs does not exist' })
@@ -66,6 +66,41 @@ exports.getDebtPs = async (req, res) => {
 
         const debts = await Debt.find();
         res.json(debts)
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Error');
+    }
+}
+
+exports.getDebtPByOrder = async (req, res) => {
+
+    try {
+        let debtP = await DebtP.findOne({n_orderP: req.params.n_orderP});
+
+        if(!debtP) {
+            res.status(404).json({ msg: 'DebtP does not exist' })
+        }
+       
+        res.json(debtP);
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Error');
+    }
+}
+
+exports.updateDebtPState = async (req, res) => {
+
+    try {
+        let debtP = await DebtP.findOne({n_orderP: req.params.n_orderP});
+
+        if(!debtP) {
+            res.status(404).json({ msg: 'DebtP does not exist' })
+        }else{
+            debtP = await DebtP.findOneAndUpdate({n_orderP: req.params.n_orderP}, {status: false})
+            res.json(debtP);
+        }
         
     } catch (error) {
         console.log(error);

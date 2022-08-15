@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+var AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const DebtBSchema = mongoose.Schema({
     ruc: {
@@ -17,6 +18,13 @@ const DebtBSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    n_orderB: {
+        type: Number
+    },
+    status: {
+        type: Boolean,
+        required: true
+    },
     created_date: {
         type: Date,
         default: Date.now()
@@ -27,6 +35,7 @@ const DebtBSchema = mongoose.Schema({
     }
 });
 
+DebtBSchema.plugin(AutoIncrement, {inc_field: 'n_orderB'});
 module.exports = mongoose.model('DebtB', DebtBSchema);
 
 //Deudas en las BD  de los bancos del estado
