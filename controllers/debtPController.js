@@ -64,7 +64,7 @@ exports.getDebtPs = async (req, res) => {
 
     try {
 
-        const debts = await Debt.find();
+        const debts = await DebtP.find();
         res.json(debts)
         
     } catch (error) {

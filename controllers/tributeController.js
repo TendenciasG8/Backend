@@ -9,11 +9,11 @@ exports.createTribute = async (req, res) => {
         tribute = new Tribute(req.body);
         codec = await Tribute.findOne({ code: req.body.code });
 
-        if(codec) {
-            res.status(401).json({ msg: 'Tribute is already registered' })
-        }else{
+        if(!codec) {
             await tribute.save();
-            res.send(user);
+            res.send(tribute);
+        }else{
+            res.status(401).json({ msg: 'Tribute is already registered' })
         }
         
     } catch (error) {
